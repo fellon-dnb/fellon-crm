@@ -26,8 +26,12 @@ public class CustomerService {
     }
     public Customer updateCustomer(Long id, Customer customerDetails) {
         if (customerRepository.existsById(id)) {
-            customerDetails.setId(id);
-            return customerRepository.save(customerDetails);
+            Customer customer = customerRepository.findById(id).get();
+            customer.setName(customerDetails.getName());
+            customer.setEmail(customerDetails.getEmail());
+            customer.setPhone(customerDetails.getPhone());
+            customer.setStatus(customerDetails.getStatus());
+            return customerRepository.save(customer);
         }
         return null;
     }
