@@ -1,4 +1,4 @@
-pring:
+spring:
   datasource:
     url: jdbc:h2:mem:crm_db
     driver-class-name: org.h2.Driver
@@ -11,3 +11,5 @@ pring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
