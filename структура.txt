@@ -1,0 +1,16 @@
+./src/main/java/com/example/fellon_crm/config/SecurityConfig.java
+./src/main/java/com/example/fellon_crm/controller/CustomerController.java
+./src/main/java/com/example/fellon_crm/controller/HomeController.java
+./src/main/java/com/example/fellon_crm/controller/TaskController.java
+./src/main/java/com/example/fellon_crm/controller/UserController.java
+./src/main/java/com/example/fellon_crm/entity/Customer.java
+./src/main/java/com/example/fellon_crm/entity/Task.java
+./src/main/java/com/example/fellon_crm/entity/User.java
+./src/main/java/com/example/fellon_crm/FellonCrmApplication.java
+./src/main/java/com/example/fellon_crm/repository/CustomerRepository.java
+./src/main/java/com/example/fellon_crm/repository/TaskRepository.java
+./src/main/java/com/example/fellon_crm/repository/UserRepository.java
+./src/main/java/com/example/fellon_crm/service/CustomerService.java
+./src/main/java/com/example/fellon_crm/service/TaskService.java
+./src/main/java/com/example/fellon_crm/service/UserService.java
+./src/test/java/com/example/fellon_crm/FellonCrmApplicationTests.java

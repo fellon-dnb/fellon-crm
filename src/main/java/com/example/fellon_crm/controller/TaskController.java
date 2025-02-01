@@ -1,45 +1,52 @@
 package com.example.fellon_crm.controller;
+
 import com.example.fellon_crm.entity.Task;
 import com.example.fellon_crm.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/tasks")
+@Controller
+@RequestMapping("/tasks")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
+    // Получение всех задач и отображение их на странице
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    public String getAllTasks(Model model) {
+        List<Task> tasks = taskService.getAllTasks();
+        model.addAttribute("tasks", tasks);
+        return "task-list"; // Страница со списком задач
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+    // Получение задачи по id и отображение формы редактирования
+    @GetMapping("/edit/{id}")
+    public String editTask(@PathVariable Long id, Model model) {
         Optional<Task> task = taskService.getTaskById(id);
-        return task.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        if (task.isPresent()) {
+            model.addAttribute("task", task.get());
+            return "edit-task"; // Страница редактирования задачи
+        }
+        return "redirect:/tasks"; // Если задача не найдена, перенаправляем на список задач
     }
 
-    @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        Task createdTask = taskService.createTask(task);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
+    // Обновление задачи
+    @PostMapping("/update")
+    public String updateTask(@ModelAttribute Task task) {
+        taskService.updateTask(task.getId(), task);
+        return "redirect:/tasks"; // После обновления возвращаемся на список задач
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
-        Task updatedTask = taskService.updateTask(id, taskDetails);
-        return updatedTask != null ? ResponseEntity.ok(updatedTask) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        return taskService.deleteTask(id) ? ResponseEntity.status(HttpStatus.NO_CONTENT).build() : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // Удаление задачи
+    @GetMapping("/delete/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+        return "redirect:/tasks"; // После удаления возвращаемся на список задач
     }
 }
