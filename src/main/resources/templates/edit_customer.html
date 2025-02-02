@@ -25,9 +25,9 @@
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Статус</label>
-            <select class="form-select" id="status" name="status" th:value="${customer.status}">
-                <option value="ACTIVE">Активный</option>
-                <option value="INACTIVE">Неактивный</option>
+            <select class="form-select" id="status" name="status">
+                <option th:value="ACTIVE" th:text="'Активный'" th:selected="${customer.status == 'ACTIVE'}"></option>
+                <option th:value="INACTIVE" th:text="'Неактивный'" th:selected="${customer.status == 'INACTIVE'}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Обновить</button>

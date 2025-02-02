@@ -8,7 +8,6 @@
 <body>
 <div class="container mt-5">
     <h1>Редактирование задачи</h1>
-    <!-- Изменили th:action, чтобы передавать task.id в URL -->
     <form th:action="@{/tasks/update/{id}(id=${task.id})}" th:object="${task}" method="post">
 
         <div class="mb-3">
@@ -23,19 +22,18 @@
 
         <div class="mb-3">
             <label for="client" class="form-label">Клиент:</label>
-            <!-- Добавлено поле для выбора клиента -->
             <select id="client" th:field="*{customer.id}" class="form-select" required>
                 <option th:each="customer : ${customers}"
                         th:value="${customer.id}"
                         th:text="${customer.name}"
-                        th:selected="${customer.id == task.customer.id}"> </option>
+                        th:selected="${customer.id == task.customer.id}"></option>
             </select>
         </div>
 
         <div class="mb-3">
             <label for="status" class="form-label">Статус:</label>
             <select id="status" th:field="*{status}" class="form-select" required>
-                <option value="PENDING" th:selected="${task.status == 'PENDING'}">В ожидании</option>
+                <option value="PENDING" th:selected="${task.status == 'PENDING'}">Ожидает</option>
                 <option value="COMPLETED" th:selected="${task.status == 'COMPLETED'}">Завершено</option>
                 <option value="CANCELLED" th:selected="${task.status == 'CANCELLED'}">Отменено</option>
             </select>

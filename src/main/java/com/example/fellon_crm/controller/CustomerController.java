@@ -30,6 +30,10 @@ public class CustomerController {
     }
     @PostMapping("/create")
     public String createCustomer(@ModelAttribute Customer customer) {
+        // Убедитесь, что статус передан и корректно установлен
+        if (customer.getStatus() == null) {
+            customer.setStatus(Customer.Status.ACTIVE);  // Устанавливаем статус по умолчанию, если не передан
+        }
         customerService.createCustomer(customer);
         return "redirect:/customers";
     }

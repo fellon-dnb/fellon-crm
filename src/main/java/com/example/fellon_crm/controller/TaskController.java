@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -43,8 +43,7 @@ public class TaskController {
         if (updatedTask != null) {
             return "redirect:/tasks";
         }
-        // Если задача не была обновлена (например, не найдена по id)
-        return "error";  // Можно отобразить страницу с ошибкой или перенаправить на /tasks
+        return "error";
     }
 
     @GetMapping("/create")
@@ -54,15 +53,15 @@ public class TaskController {
         return "create_task";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteTask(@PathVariable Long id) {
-        taskService.deleteTask(id);
-        return "redirect:/tasks";
-    }
-
     @PostMapping("/save")
     public String saveTask(@ModelAttribute Task task) {
         taskService.save(task);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
         return "redirect:/tasks";
     }
 }
