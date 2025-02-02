@@ -10,7 +10,7 @@
 <body>
 <div class="container mt-5">
     <h1>Редактировать клиента</h1>
-    <form action="/customers/${customer.id}" method="post">
+    <form action="#" th:action="@{/customers/{id}(id=${customer.id})}" method="post">
         <div class="mb-3">
             <label for="name" class="form-label">Имя</label>
             <input type="text" class="form-control" id="name" name="name" th:value="${customer.name}">

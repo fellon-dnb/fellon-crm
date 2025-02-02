@@ -14,41 +14,55 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
-
     @Autowired
     private TaskService taskService;
     @Autowired
     private CustomerService customerService;
-    // Получение всех задач и отображение их на странице
+
     @GetMapping
     public String getAllTasks(Model model) {
         List<Task> tasks = taskService.getAllTasks();
         model.addAttribute("tasks", tasks);
-        return "tasks"; // Страница со списком задач
+        return "tasks";
     }
+
     @GetMapping("/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
         Optional<Task> task = taskService.getTaskById(id);
         if (task.isPresent()) {
             model.addAttribute("task", task.get());
-            return "edit-task"; // Страница редактирования задачи
+            model.addAttribute("customers", customerService.getAllCustomers());
+            return "edit_task";
         }
-        return "redirect:/tasks"; // Если задача не найдена, перенаправляем на список задач
+        return "redirect:/tasks";
     }
-    @PostMapping("/update")
-    public String updateTask(@ModelAttribute Task task) {
-        taskService.updateTask(task.getId(), task);
-        return "redirect:/tasks"; // После обновления возвращаемся на список задач
+
+    @PostMapping("/update/{id}")
+    public String updateTask(@PathVariable Long id, @ModelAttribute Task task) {
+        Task updatedTask = taskService.updateTask(id, task);
+        if (updatedTask != null) {
+            return "redirect:/tasks";
+        }
+        // Если задача не была обновлена (например, не найдена по id)
+        return "error";  // Можно отобразить страницу с ошибкой или перенаправить на /tasks
     }
+
     @GetMapping("/create")
     public String showCreateTaskForm(Model model) {
         model.addAttribute("task", new Task());
-        model.addAttribute("customers", customerService.getAllCustomers()); // Добавляем список клиентов
+        model.addAttribute("customers", customerService.getAllCustomers());
         return "create_task";
     }
+
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
-        return "redirect:/tasks"; // После удаления возвращаемся на список задач
+        return "redirect:/tasks";
+    }
+
+    @PostMapping("/save")
+    public String saveTask(@ModelAttribute Task task) {
+        taskService.save(task);
+        return "redirect:/tasks";
     }
 }

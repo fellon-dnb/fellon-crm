@@ -24,16 +24,13 @@ public class CustomerService {
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
-    public Customer updateCustomer(Long id, Customer customerDetails) {
-        if (customerRepository.existsById(id)) {
-            Customer customer = customerRepository.findById(id).get();
-            customer.setName(customerDetails.getName());
-            customer.setEmail(customerDetails.getEmail());
-            customer.setPhone(customerDetails.getPhone());
-            customer.setStatus(customerDetails.getStatus());
-            return customerRepository.save(customer);
-        }
-        return null;
+    public Customer updateCustomer(Long id, Customer updatedCustomer) {
+        return customerRepository.findById(id).map(existingCustomer -> {
+            existingCustomer.setName(updatedCustomer.getName());
+            existingCustomer.setEmail(updatedCustomer.getEmail());
+            existingCustomer.setPhone(updatedCustomer.getPhone());
+            return customerRepository.save(existingCustomer);
+        }).orElseThrow(() -> new IllegalArgumentException("Клиент с id " + id + " не найден"));
     }
     public boolean deleteCustomer(Long id) {
         if (customerRepository.existsById(id)) {
