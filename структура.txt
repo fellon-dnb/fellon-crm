@@ -14,3 +14,14 @@
 ./src/main/java/com/example/fellon_crm/service/TaskService.java
 ./src/main/java/com/example/fellon_crm/service/UserService.java
 ./src/test/java/com/example/fellon_crm/FellonCrmApplicationTests.java
+.src/main/resources/templates/create_customer.html
+.src/main/resources/templates/create_task.html
+.src/main/resources/templates/customers.html
+.src/main/resources/templates/edit_customer.html
+.src/main/resources/templates/edit_task.html
+.src/main/resources/templates/home.html
+.src/main/resources/templates/tasks.html
+.src/main/resources/templates/users.html
+.src/main/resources/application.properties
+.src/main/resources/application.yml
+pom.xml
