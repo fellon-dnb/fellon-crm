@@ -22,6 +22,10 @@ public class CustomerService {
     }
 
     public Customer createCustomer(Customer customer) {
+        if (customer.getStatus() == null) {
+            customer.setStatus(Customer.Status.ACTIVE); // Статус по умолчанию
+        }
+        System.out.println("Creating customer with status: " + customer.getStatus()); // Логирование
         return customerRepository.save(customer);
     }
     public Customer updateCustomer(Long id, Customer updatedCustomer) {
@@ -29,6 +33,7 @@ public class CustomerService {
             existingCustomer.setName(updatedCustomer.getName());
             existingCustomer.setEmail(updatedCustomer.getEmail());
             existingCustomer.setPhone(updatedCustomer.getPhone());
+            existingCustomer.setStatus(updatedCustomer.getStatus());
             return customerRepository.save(existingCustomer);
         }).orElseThrow(() -> new IllegalArgumentException("Клиент с id " + id + " не найден"));
     }
