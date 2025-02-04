@@ -1,27 +1,41 @@
-./src/main/java/com/example/fellon_crm/config/SecurityConfig.java
-./src/main/java/com/example/fellon_crm/controller/CustomerController.java
-./src/main/java/com/example/fellon_crm/controller/HomeController.java
-./src/main/java/com/example/fellon_crm/controller/TaskController.java
-./src/main/java/com/example/fellon_crm/controller/UserController.java
-./src/main/java/com/example/fellon_crm/entity/Customer.java
-./src/main/java/com/example/fellon_crm/entity/Task.java
-./src/main/java/com/example/fellon_crm/entity/User.java
-./src/main/java/com/example/fellon_crm/FellonCrmApplication.java
-./src/main/java/com/example/fellon_crm/repository/CustomerRepository.java
-./src/main/java/com/example/fellon_crm/repository/TaskRepository.java
-./src/main/java/com/example/fellon_crm/repository/UserRepository.java
-./src/main/java/com/example/fellon_crm/service/CustomerService.java
-./src/main/java/com/example/fellon_crm/service/TaskService.java
-./src/main/java/com/example/fellon_crm/service/UserService.java
+
+Tasks:
+
+
+
+
+
+
+у меня есть проект
+локально он находится в /d/WorkSpace/fellon-crm
+удалённо https://github.com/fellon-dnb/fellon-crm.git
+в нём есть 2 ветки dev и dev2
+мне нужно объеденить их в ветку newdev
+таким образом что бы из ветки dev2 перенести файлы:
 ./src/test/java/com/example/fellon_crm/FellonCrmApplicationTests.java
-.src/main/resources/templates/create_customer.html
-.src/main/resources/templates/create_task.html
-.src/main/resources/templates/customers.html
-.src/main/resources/templates/edit_customer.html
-.src/main/resources/templates/edit_task.html
-.src/main/resources/templates/home.html
-.src/main/resources/templates/tasks.html
-.src/main/resources/templates/users.html
-.src/main/resources/application.properties
 .src/main/resources/application.yml
 pom.xml
+./src/main/java/com/example/fellon_crm/config/SecurityConfig.java
+./src/main/java/com/example/fellon_crm/controller/CustomerController.java
+./src/main/java/com/example/fellon_crm/entity/Customer.java
+./src/main/java/com/example/fellon_crm/repository/CustomerRepository.java
+./src/main/java/com/example/fellon_crm/FellonCrmApplication.java
+./src/main/java/com/example/fellon_crm/service/CustomerService.java
+.src/main/resources/templates/create_customer.html
+.src/main/resources/templates/customers.html
+.src/main/resources/templates/edit_customer.html
+.src/main/resources/templates/home.html
+.src/main/resources/templates/users.html
+./src/main/java/com/example/fellon_crm/service/UserService.java
+./src/main/java/com/example/fellon_crm/repository/UserRepository.java
+./src/main/java/com/example/fellon_crm/entity/User.java
+./src/main/java/com/example/fellon_crm/controller/UserController.java
+./src/main/java/com/example/fellon_crm/controller/HomeController.java
+а из ветки dev файлы:
+./src/main/java/com/example/fellon_crm/controller/TaskController.java
+./src/main/java/com/example/fellon_crm/entity/Task.java
+./src/main/java/com/example/fellon_crm/repository/TaskRepository.java
+./src/main/java/com/example/fellon_crm/service/TaskService.java
+.src/main/resources/templates/create_task.html
+.src/main/resources/templates/edit_task.html
+.src/main/resources/templates/tasks.html
