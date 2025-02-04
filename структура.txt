@@ -1,17 +1,4 @@
 
-Tasks:
-
-
-
-
-
-
-у меня есть проект
-локально он находится в /d/WorkSpace/fellon-crm
-удалённо https://github.com/fellon-dnb/fellon-crm.git
-в нём есть 2 ветки dev и dev2
-мне нужно объеденить их в ветку newdev
-таким образом что бы из ветки dev2 перенести файлы:
 ./src/test/java/com/example/fellon_crm/FellonCrmApplicationTests.java
 .src/main/resources/application.yml
 pom.xml
@@ -31,7 +18,7 @@ pom.xml
 ./src/main/java/com/example/fellon_crm/entity/User.java
 ./src/main/java/com/example/fellon_crm/controller/UserController.java
 ./src/main/java/com/example/fellon_crm/controller/HomeController.java
-а из ветки dev файлы:
+
 ./src/main/java/com/example/fellon_crm/controller/TaskController.java
 ./src/main/java/com/example/fellon_crm/entity/Task.java
 ./src/main/java/com/example/fellon_crm/repository/TaskRepository.java
