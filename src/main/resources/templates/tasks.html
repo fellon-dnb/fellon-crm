@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <h1>Список задач</h1>
     <a href="/tasks/create" class="btn btn-primary mb-3">Создать задачу</a>
-    <a href="/" class="btn btn-secondary mb-3">На главную</a>
+    <a href="/" class="btn btn-secondary">На главную</a>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -21,11 +21,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="task : ${tasks}"
-            th:classappend="${task.status == 'COMPLETED' ? 'table-success' : (task.status == 'CANCELLED' ? 'table-danger' : '')}">
+        <tr th:each="task : ${tasks}">
             <td th:text="${task.title}"></td>
             <td th:text="${task.description}"></td>
-            <td th:text="${task.status == 'PENDING' ? 'В ожидании' : (task.status == 'COMPLETED' ? 'Завершено' : 'Отменено')}"></td>
+            <td th:text="${task.status}"></td>
             <td th:text="${task.customer?.name}"></td>
             <td>
                 <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="btn btn-info">Редактировать</a>
